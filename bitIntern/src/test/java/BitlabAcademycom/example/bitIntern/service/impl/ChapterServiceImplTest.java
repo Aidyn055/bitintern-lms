@@ -111,7 +111,6 @@ class ChapterServiceImplTest {
 
     @Test
     void testDeleteChapter_Success() {
-        // Твой код делает строгую проверку if (!chapterRepository.existsById(id))
         Mockito.when(chapterRepository.existsById(1L)).thenReturn(true);
         Mockito.doNothing().when(chapterRepository).deleteById(1L);
 

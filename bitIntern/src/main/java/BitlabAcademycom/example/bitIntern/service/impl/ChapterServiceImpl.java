@@ -56,8 +56,7 @@ public class ChapterServiceImpl implements ChapterService {
 
         existingChapter.setName(chapterDto.getName());
         existingChapter.setOrder(chapterDto.getOrder());
-        // Если у вас есть привязка к курсу, её тоже можно сетить здесь, например:
-        // existingChapter.setCourse(chapterMapper.toEntity(chapterDto.getCourse()));
+
 
         Chapter updatedChapter = chapterRepository.save(existingChapter);
         log.info("Chapter with id: {} successfully updated", updatedChapter.getId());
