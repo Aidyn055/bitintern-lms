@@ -1,0 +1,20 @@
+package BitlabAcademycom.example.bitIntern.mapper;
+
+import BitlabAcademycom.example.bitIntern.dto.ChapterDto;
+import BitlabAcademycom.example.bitIntern.model.Chapter;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring")
+public interface ChapterMapper {
+    @Mapping(source = "course.id", target = "courseId")
+    ChapterDto toDto(Chapter chapter);
+
+    @Mapping(source = "courseId", target = "course.id")
+    Chapter toEntity(ChapterDto chapterDto);
+
+    List<ChapterDto> toDtoList(List<Chapter> chapters);
+    List<Chapter> toEntityList(List<ChapterDto> chapterDtos);
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2026-06-04-insert-real-data" author="bitlab">
+
+        <insert tableName="courses">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Java Enterprise Edition &amp; Spring Framework"/>
+            <column name="description" value="Comprehensive program designed to master advanced Java concepts, Spring Boot, Hibernate ORM, and microservices architecture with industry best practices."/>
+            <column name="created_time" valueComputed="now()"/>
+            <column name="updated_time" valueComputed="now()"/>
+        </insert>
+
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="1"/>
+            <column name="course_id" valueNumeric="1"/>
+            <column name="name" value="Core Dependency Injection &amp; Spring Container"/>
+            <column name="chapter_order" valueNumeric="1"/>
+            <column name="created_time" valueComputed="now()"/>
+            <column name="updated_time" valueComputed="now()"/>
+        </insert>
+
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="2"/>
+            <column name="course_id" valueNumeric="1"/>
+            <column name="name" value="Data Persistence with Hibernate &amp; JPA"/>
+            <column name="chapter_order" valueNumeric="2"/>
+            <column name="created_time" valueComputed="now()"/>
+            <column name="updated_time" valueComputed="now()"/>
+        </insert>
+
+        <insert tableName="lessons">
+            <column name="id" valueNumeric="1"/>
+            <column name="chapter_id" valueNumeric="1"/>
+            <column name="name" value="Introduction to Inversion of Control (IoC)"/>
+            <column name="content" value="Inversion of Control (IoC) is a design principle..."/>
+            <column name="description" value="Overview of Inversion of Control principle in Spring Framework."/>
+            <column name="lesson_order" valueNumeric="1"/>
+            <column name="created_time" valueComputed="now()"/>
+            <column name="updated_time" valueComputed="now()"/>
+        </insert>
+
+        <insert tableName="lessons">
+            <column name="id" valueNumeric="2"/>
+            <column name="chapter_id" valueNumeric="2"/>
+            <column name="name" value="Understanding Hibernate Entity Lifecycle States"/>
+            <column name="content" value="Hibernate manages entities using four distinct lifecycle states..."/>
+            <column name="description" value="Deep dive into Transient, Persistent, Detached, and Removed states."/>
+            <column name="lesson_order" valueNumeric="2"/>
+            <column name="created_time" valueComputed="now()"/>
+            <column name="updated_time" valueComputed="now()"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

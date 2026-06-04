@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: lms-postgres-container
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: lms_db
+      POSTGRES_USER: lms_user
+      POSTGRES_PASSWORD: lms_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - lms_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lms_user -d lms_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - lms-network
+
+  app:
+    image: aidyn055/bitintern-app:latest
+    container_name: lms-app-container
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/lms_db
+      - SPRING_DATASOURCE_USERNAME=lms_user
+      - SPRING_DATASOURCE_PASSWORD=lms_password
+      - SPRING_LIQUIBASE_ENABLED=true
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    networks:
+      - lms-network
+
+volumes:
+  lms_postgres_data:
+
+networks:
+  lms-network:
+    driver: bridge

@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: bitIntern
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/lms_db
+    username: lms_user
+    password: lms_password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+
+logging:
+  level:
+    BitlabAcademycom:
+      example:
+        bitIntern: DEBUG
+
+
+springdoc:
+  swagger-ui:
+    # Страница Swagger будет открываться по ссылке: http://localhost:8080/swagger-ui.html
+    path: /swagger-ui.html
+    # Сортирует методы (GET, POST, PUT, DELETE) по алфавиту для красоты
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
