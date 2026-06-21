@@ -36,8 +36,8 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public LessonDto createLesson(LessonDto lessonDto) {
-        log.info("Creating new lesson"); // INFO: чистый текст
-        log.debug("Payload for lesson creation: {}", lessonDto); // DEBUG: все данные объекта
+        log.info("Creating new lesson");
+        log.debug("Payload for lesson creation: {}", lessonDto);
 
         Lesson lesson = lessonMapper.toEntity(lessonDto);
         Lesson savedLesson = lessonRepository.save(lesson);
@@ -55,7 +55,7 @@ public class LessonServiceImpl implements LessonService {
                 .orElseThrow(() -> new IllegalArgumentException("Урок с id " + id + " не найден для обновления!"));
 
         existingLesson.setName(lessonDto.getName());
-        existingLesson.setContent(lessonDto.getContent()); // Или какое у вас поле для текста урока
+        existingLesson.setContent(lessonDto.getContent());
 
         Lesson updatedLesson = lessonRepository.save(existingLesson);
         log.info("Lesson with id: {} successfully updated", updatedLesson.getId());
